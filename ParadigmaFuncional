@@ -1,0 +1,99 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class paradigmaFuncional {
+        static Scanner sc = new Scanner(System.in);
+        static int opcServicios, opcCarrera, opcPeriodo, creditos, opcLiquidar;
+        static String correoUsuario, contraseñaUsuario, opcMateria, correo;
+        static ArrayList<String> dataCorreos = new ArrayList<>(), dataContraseña = new ArrayList<>(), dataMaterias = new ArrayList<>();
+
+    public static void main(String[] args) throws InterruptedException {
+        inicial();
+        menu();        
+    }
+                
+    static void inicial(){
+        dataCorreos.add("majilo");      //Ejemplo de base de datos || Se pueden añadir + datos
+        dataContraseña.add("12345");
+        System.out.println("    Bienvenidos a la universidad Sergio Arboleda    ");
+        System.out.println("Ingrese su correo electronico: ");
+        correoUsuario = sc.nextLine();
+        System.out.println("Ingrese su contraseña");
+        contraseñaUsuario = sc.nextLine();
+    }
+
+    static void menu() throws InterruptedException{
+        for (String correo : dataCorreos) {
+            if (correo.equals(correoUsuario)) {
+                System.out.println("Correo encontrado...");
+                for (String contraseña : dataContraseña) {
+                    if (contraseña.equals(contraseñaUsuario)) {
+                        System.out.println("Contraseña correcta.............");
+                        System.out.println("    SERVICIOS DE ESTUDIANTES");
+                        System.out.println("    Selecciona una opcion de acuerdo a su numero");
+                        System.out.println("1. Pagos en linea");
+                        System.out.println("2. Consulta tu horario de clases");
+                        System.out.println("3. Consulta de normativas");
+                        System.out.println("4. Consulta tus promedios academicos");
+                        System.out.println("5. Consulta tus notas parciales (pregrado)");
+                        System.out.println("6. Inscribe tus asignaturas");
+                        System.out.println("7. Solicitud de certificaciones");
+                        System.out.println("8. Solitudes academicas y administrativas");
+                        System.out.println("9. Consulta tus notas definitivas");
+                        System.out.println("10. Postula para grafo");
+                        System.out.println("11. Consulta tu cita de matricula");
+                        System.out.println("12. Actualiza tus datos personales");
+                        System.out.println("13. Informe de egreso no graduado");
+                        opcServicios = sc.nextInt();
+                        if (opcServicios==6) {
+                            System.out.println("                Selecciona el numero de tu carrera");
+                            System.out.println("1. Ciencias de Computacion");
+                            System.out.println("2. Psicologia");
+                            System.out.println("3. Administracion de Empresas ");
+                            opcCarrera = sc.nextInt();
+                            if ((opcCarrera == 1) || (opcCarrera == 3)) {
+                                System.out.println("Ingrese su periodo academico");
+                                opcPeriodo = sc.nextInt();
+                                creditos = 0;
+                                while (creditos < 7){
+                                    opcMateria=null;
+                                    System.out.println("            Ingrese el nombre de la materia");
+                                    System.out.println("- Paradigmas de programacion ");
+                                    System.out.println("- Estructuras de Datos ");
+                                    System.out.println("- Arquitecturas de Computadores");
+                                    System.out.println("- Analisis Matematico ");
+                                    opcMateria = sc.nextLine();
+                                    dataMaterias.add(opcMateria);
+                                    creditos++;
+                                }
+                                for (String materias : dataMaterias) {
+                                    System.out.println("Materias Preinscritas: "+ materias);
+                                }
+                                Thread.sleep(2000);
+                                System.out.println("Desea liquidar la matricula?");
+                                System.out.println("Marque 1 para SI");
+                                System.out.println("Marque 2 para NO");
+                                opcLiquidar = sc.nextInt();
+                                if (opcLiquidar == 1) {
+                                    System.out.println("Generando recibo de matricula..... ");
+                                    Thread.sleep(3000);
+                                    System.out.println("Recibo generado y enviado al correo");
+                                } else {
+                                    System.out.println("Saliendo del programa...");
+                                    System.exit(0);
+                                }
+                                
+                            } 
+                        } else {
+                                System.out.println("Error");
+                            }
+                    } else {
+                            System.out.println("Contraseña incorrecta");
+                        }
+                }
+            } else {
+                System.out.println("Correo no encontrado");
+            }
+        }
+    }
+}
